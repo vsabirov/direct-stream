@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import './App.scss';
+import "./App.scss";
+
+import Room from "./Room";
+import AuthenticationForm from "./AuthenticationForm";
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const onAuthAttempt = (result: boolean) => {
+    setIsAuthenticated(result);
+  }
+
   return (
-    <div>
-      hi
-    </div>
+    <>
+      { 
+        isAuthenticated ? 
+        <Room /> 
+        : 
+        <AuthenticationForm onAuthAttempt={onAuthAttempt} /> 
+      }
+    </>
   );
 }
 
