@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 
-import "./AuthenticationForm.scss";
+import AuthenticationFormProps from "../models/AuthenticationFormProps";
 
-interface AuthenticationFormProps {
-  onAuthAttempt: (result: boolean) => void;
-}
+import "./AuthenticationForm.scss";
 
 const AuthenticationForm: React.FC<AuthenticationFormProps> = (props: AuthenticationFormProps) => {
   const [currentKey, setCurrentKey] = useState("");
     
   const tryToAuthenticate = () => {
-    props.onAuthAttempt(currentKey === (process.env.PASS_KEY || "entry"));
+    props.onAuthAttempt(currentKey === (process.env.REACT_APP_PASS_KEY || currentKey));
   }
   
   return (
     <div className="authentication-form">
-      <h1>Authentication</h1>
+      <h1>Entry Guard</h1>
         <input type="password" placeholder="Key" onChange={(e) => setCurrentKey(e.target.value)} />
         <br />
-        <button onClick={tryToAuthenticate}>Log in</button>
+        <button onClick={tryToAuthenticate}>Pass through</button>
     </div>
   )
 }

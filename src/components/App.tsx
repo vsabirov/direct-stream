@@ -6,10 +6,10 @@ import Room from "./Room";
 import AuthenticationForm from "./AuthenticationForm";
 
 const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!(process.env.REACT_APP_PASS_KEY));
 
-  const onAuthAttempt = (result: boolean) => {
-    setIsAuthenticated(result);
+  const onAuthAttempt = (authenticatedSucessfully: boolean) => {
+    setIsAuthenticated(authenticatedSucessfully);
   }
 
   return (

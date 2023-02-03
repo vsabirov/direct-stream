@@ -2,12 +2,9 @@ import React, { useEffect, useRef } from "react";
 
 import Hls from "hls.js";
 
-import "./VideoPlayer.scss";
+import VideoPlayerProps from "../models/VideoPlayerProps";
 
-interface VideoPlayerProps {
-  source: string;
-  format: string;
-}
+import "./VideoPlayer.scss";
 
 const VideoPlayer: React.FC<VideoPlayerProps> = (props: VideoPlayerProps) => {
   const video: React.MutableRefObject<HTMLVideoElement | null> = useRef(null);
