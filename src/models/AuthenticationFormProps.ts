@@ -1,5 +1,5 @@
 interface AuthenticationFormProps {
-  onAuthAttempt: (authenticatedSucessfully: boolean) => void;
+  onAuthAttempt: (authenticatedSucessfully: boolean, attemptedKey: string) => void;
 }
 
 export default AuthenticationFormProps;

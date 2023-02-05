@@ -7,8 +7,10 @@ import AuthenticationForm from "./AuthenticationForm";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(!(process.env.REACT_APP_PASS_KEY));
+  const [attemptedKey, setAttemptedKey] = useState("");
 
-  const onAuthAttempt = (authenticatedSucessfully: boolean) => {
+  const onAuthAttempt = (authenticatedSucessfully: boolean, attemptedKey: string) => {
+    setAttemptedKey(attemptedKey);
     setIsAuthenticated(authenticatedSucessfully);
   }
 
@@ -16,7 +18,7 @@ const App: React.FC = () => {
     <>
       { 
         isAuthenticated ? 
-        <Room /> 
+        <Room passKey={attemptedKey} /> 
         : 
         <AuthenticationForm onAuthAttempt={onAuthAttempt} /> 
       }

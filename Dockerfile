@@ -2,8 +2,6 @@ FROM ubuntu
 
 RUN apt-get update && apt-get install -y wget git nodejs npm build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev
 
-RUN npm i -g serve
-
 RUN mkdir -p /opt/src
 WORKDIR /opt/src
 
@@ -26,18 +24,18 @@ COPY src ./src
 COPY public ./public
 
 ARG UI_PASS_KEY
-ARG UI_VIDEO_SOURCE
-ARG UI_VIDEO_FORMAT
-
 ARG IS_CHAT_ENABLED
 ARG MAX_CHAT_MESSAGES
 
 ENV REACT_APP_PASS_KEY=$UI_PASS_KEY
 ENV REACT_APP_IS_CHAT_ENABLED=$IS_CHAT_ENABLED
-ENV REACT_APP_VIDEO_SOURCE=$UI_VIDEO_SOURCE
-ENV REACT_APP_VIDEO_FORMAT=$UI_VIDEO_FORMAT
 
 RUN npm run build
+
+RUN mkdir -p /var/local/directstream/hls
+RUN mkdir -p /var/local/directstream/record
+
+RUN chown -R www-data:www-data /var/local/directstream/
 
 RUN mkdir -p /usr/local/nginx/conf
 COPY nginx.conf /usr/local/nginx/conf

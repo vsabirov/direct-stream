@@ -38,4 +38,6 @@ You're now ready to start streaming and accepting guests on your broadcast.
 
 # Usage
 
-TBD
+Start streaming to `rtmp://<your_hostname>/stream` from your streaming software, like OBS. You can configure a custom streaming preset with RTMP.
+
+Go to `http://<your_hostname>/` to open the stream UI. You and your guests can view the stream from there.

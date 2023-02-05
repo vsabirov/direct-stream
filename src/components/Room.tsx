@@ -1,16 +1,17 @@
 import React from "react";
 
-import VideoPlayer from "./VideoPlayer";
+import HLSPlayer from "./HLSPlayer";
 import Chat from "./Chat";
 
 import "./Room.scss";
+import RoomProps from "../models/RoomProps";
 
-const Room: React.FC = () => {
+const Room: React.FC<RoomProps> = (props: RoomProps) => {
   return (
     <div className="room">
-      <VideoPlayer 
-        source={process.env.REACT_APP_VIDEO_SOURCE || "/stream/stream.m3u8"} 
-        format={process.env.REACT_APP_VIDEO_FORMAT || "application/vnd.apple.mpegurl"}
+      <HLSPlayer
+        source={`/play?key=${props.passKey}`}
+        fragSource={`/frag?key=${props.passKey}`}
       />
       {
         process.env.REACT_APP_IS_CHAT_ENABLED ? <Chat /> : <></>

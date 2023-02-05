@@ -8,7 +8,7 @@ const AuthenticationForm: React.FC<AuthenticationFormProps> = (props: Authentica
   const [currentKey, setCurrentKey] = useState("");
     
   const tryToAuthenticate = () => {
-    props.onAuthAttempt(currentKey === (process.env.REACT_APP_PASS_KEY || currentKey));
+    props.onAuthAttempt(currentKey === (process.env.REACT_APP_PASS_KEY || currentKey), currentKey);
   }
   
   return (
