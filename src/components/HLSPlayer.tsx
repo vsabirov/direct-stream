@@ -28,7 +28,7 @@ const HLSPlayer: React.FC<HLSPlayerProps> = (props: HLSPlayerProps) => {
     else if(video.current?.canPlayType("application/vnd.apple.mpegurl")) {
       video.current.src = props.source;
     }
-  });
+  }, [video]);
 
   return (
     <div className="video-player">

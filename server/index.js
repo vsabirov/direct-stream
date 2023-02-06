@@ -89,7 +89,7 @@ server.get("/frag", (req, res) => {
 // Chat functionality.
 const chat = [];
 
-server.get("/api/chat", (req, res) => {
+server.get("/chat", (req, res) => {
   if(config.isChatEnabled === false) {
     res.status(403).send();
 
@@ -101,15 +101,21 @@ server.get("/api/chat", (req, res) => {
   });
 });
 
-server.post("/api/chat", (req, res) => {
+server.post("/chat", (req, res) => {
   if(config.isChatEnabled === false) {
     res.status(403).send();
 
     return;
   }
+
+  if(!req.body.message || !req.body.author) {
+    res.status(400).send();
+
+    return;
+  }
   
   if(chat.length >= config.maxChatMessages) {
-    chat = chat.slice(1);
+    chat.pop();
   }
 
   chat.push(req.body);

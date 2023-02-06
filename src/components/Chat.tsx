@@ -12,7 +12,7 @@ const Chat: React.FC = () => {
   const [payload, setPayload] = useState("");
 
   useEffect(() => {
-    ky.get("/api/chat")
+    ky.get("/chat")
     .then(response => {
       if(response.status === 200) {
         return response.json() as Promise<ChatData>;
@@ -25,10 +25,14 @@ const Chat: React.FC = () => {
 
       setMessages(body.messages);
     })
-  });
+  }, []);
 
   const sendMessage = () => {
-    ky.post("/api/chat", { json: {
+    if(!payload) {
+      return;
+    }
+
+    ky.post("/chat", { json: {
         message: payload,
         author: "Guest"
       }
@@ -52,7 +56,7 @@ const Chat: React.FC = () => {
         </>
       </div>
       <div className="message-input">
-        <textarea onChange={e => setPayload(e.target.value)} value={payload} onSubmit={sendMessage}/>
+        <textarea onChange={e => setPayload(e.target.value)} value={payload} />
         <br />
         <button onClick={sendMessage}>Send</button>
       </div>

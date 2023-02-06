@@ -14,6 +14,12 @@
 
     background-color: rgb(229, 229, 229);
     
+    padding-left: 6px;
+    padding-right: 6px;
+
+    overflow-y: scroll;
+    word-wrap: break-word;
+    
     .message-author-name {
       color: rgb(random(255) + 99, random(255) + 99, random(255) + 99);
     }
