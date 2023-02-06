@@ -43,8 +43,6 @@ server.post("/publish", (req, res) => {
 });
 
 server.get("/play", (req, res) => {
-  console.log(config.passKey, req.query.key);
-  
   if(config.passKey && req.query.key !== config.passKey) {
     res.status(401).send();
 
