@@ -115,7 +115,7 @@ server.post("/chat", (req, res) => {
   }
   
   if(chat.length >= config.maxChatMessages) {
-    chat.pop();
+    chat.shift();
   }
 
   chat.push(req.body);
