@@ -37,7 +37,6 @@ ENV MAX_CHAT_MESSAGES=$MAX_CHAT_MESSAGES
 RUN npm run build
 
 RUN mkdir -p /var/local/directstream/hls
-RUN mkdir -p /var/local/directstream/record
 
 RUN chown -R www-data:www-data /var/local/directstream/
 
